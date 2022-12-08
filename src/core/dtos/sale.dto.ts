@@ -4,7 +4,7 @@ import { SaleItemDto } from "./saleItem.dto.js";
 
 export interface SaleDto {
   readonly id: number;
-  readonly saleItems: Omit<SaleItemDto, 'id'>[];
+  readonly saleItems: SaleItemDto[];
   readonly employee: Omit<EmployeeDto, 'position' | 'id'>;
   readonly buyer: Pick<BuyerDto, 'name' | 'email'>;
   readonly paymentType: string;

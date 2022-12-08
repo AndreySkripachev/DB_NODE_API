@@ -26,12 +26,14 @@ class SaleMapper implements MapperFromDB<readonly Sale[], SaleDto[]> {
           saleItems: [{
             count: sale.siCount,
             productName: sale.gName,
+            id: sale.IDsi,
           }]
         })
       } else {
         currentSale.saleItems.push({
           count: sale.siCount,
           productName: sale.gName,
+          id: sale.IDsi,
         })
       }
     }

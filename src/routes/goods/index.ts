@@ -18,13 +18,17 @@ app.get(URL, (_req, res) => {
   });
 });
 
-app.get(`${URL}/:name/:cost`, (req, res) => {
-  const name = req.params.name;
-  const cost = req.params.cost;
+app.get(`${URL}/:name/:cost/:type/:manufacturer`, (req, res) => {
+  const {
+    name,
+    cost,
+    manufacturer,
+    type
+  } = req.params;
 
   connection.query(`
     INSERT INTO goods (gName, gCost, IDgt, IDm)
-    VALUES ('${name}', '${cost}', 1, 1);
+    VALUES ('${name}', '${cost}', ${type}, ${manufacturer});
   `, (error, results) => {
     if (error) {
       res.status(500).send(createMySQLErrorResponse(error));

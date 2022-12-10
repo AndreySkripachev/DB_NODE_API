@@ -4,7 +4,10 @@ import { createMySQLErrorResponse } from '../../server/errorHandler.js';
 import { PaymentType } from '../../core/dbModels/paymentType.js';
 import { paymentTypeMapper } from '../../core/mappers/paymentType.mapper.js';
 
-app.get('/payment-types', (_req, res) => {
+const URL = '/payment-types';
+
+//Get req 
+app.get(URL, (_req, res) => {
   connection.query('SELECT * from payment_type', (error, results) => {
     if (error) {
       res.status(Number(error.code)).send(createMySQLErrorResponse(error));
@@ -15,3 +18,19 @@ app.get('/payment-types', (_req, res) => {
     );
   });
 });
+
+// Post req
+app.get(`${URL}/:name`, (req, res) => {
+  const { name } = req.params;
+
+  connection.query(`
+    INSERT INTO payment_type (ptName)
+    VALUES ('${name}');
+  `, (error, results) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(results);
+  });
+})

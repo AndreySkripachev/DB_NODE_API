@@ -4,7 +4,9 @@ import { ProductType } from '../../core/dbModels/productType.js';
 import { productTypeMapper } from '../../core/mappers/productType.mapper.js';
 import { createMySQLErrorResponse } from '../../server/errorHandler.js';
 
-app.get('/goods-type', (_req, res) => {
+const URL = '/goods-type';
+
+app.get(URL, (_req, res) => {
   connection.query('SELECT * from goods_type', (error, results) => {
     if (error) {
       res.status(Number(error.code)).send(createMySQLErrorResponse(error));
@@ -15,3 +17,18 @@ app.get('/goods-type', (_req, res) => {
     );
   });
 });
+
+app.get(`${URL}/:name`, (req, res) => {
+  const { name } = req.params;
+
+  connection.query(`
+    INSERT INTO goods_type (gtName)
+    VALUES ('${name}');
+  `, (error, results) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(results);
+  });
+})

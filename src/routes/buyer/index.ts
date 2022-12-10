@@ -25,7 +25,7 @@ app.get(`${URL}/:name/:address/:phone/:email`, (req, res) => {
     name,
     phone,
   } = req.params;
-  
+
   connection.query(`
     INSERT INTO buyer (bName, bAddress, bPhone, bEmail)
     VALUES ('${name}', '${address}', '${email}', '${phone}');
@@ -35,5 +35,17 @@ app.get(`${URL}/:name/:address/:phone/:email`, (req, res) => {
     }
 
     res.send(results);
+  })
+});
+
+app.get(`${URL}/delete/:id`, (req, res) => {
+  const { id } = req.params;
+
+  connection.query(`DELETE FROM buyer WHERE IDb=${id}`, (error, result) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(result);
   })
 })

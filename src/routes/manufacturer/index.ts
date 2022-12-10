@@ -32,3 +32,15 @@ app.get(`${URL}/:name/:country`, (req, res) => {
     res.send(results);
   });
 })
+
+app.get(`${URL}/delete/:id`, (req, res) => {
+  const { id } = req.params;
+
+  connection.query(`DELETE FROM manufacturer WHERE IDg=${id}`, (error, result) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(result);
+  })
+})

@@ -15,4 +15,4 @@ class ManufacturerMapper implements MapperFromDB<
   }
 }
 
-export const manufacturerMapper = new ManufacturerMapper
+export const manufacturerMapper = new ManufacturerMapper()

@@ -4,7 +4,9 @@ import { createMySQLErrorResponse } from '../../server/errorHandler.js';
 import { Sale } from '../../core/dbModels/sale.js';
 import { saleMapper } from '../../core/mappers/sale.mapper.js';
 
-app.get('/sales', (_req, res) => {
+const URL = '/sales';
+
+app.get(URL, (_req, res) => {
   connection.query('SELECT * from view_sales', (error, results) => {
     if (error) {
       res.status(Number(error.code)).send(createMySQLErrorResponse(error));

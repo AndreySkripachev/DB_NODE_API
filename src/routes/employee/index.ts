@@ -49,3 +49,26 @@ app.get(`${URL}/delete/:id`, (req, res) => {
     res.send(result);
   })
 })
+
+app.get(`${URL}/update/:id/:last/:first/:father/:position`, (req, res) => {
+  const {
+    father,
+    first,
+    id,
+    last,
+    position,
+  } = req.params;
+
+  connection.query(`
+    UPDATE employee
+    SET eLastName='${last}', eFirstName='${first}, ePatronymic='${father}', ePosition='${position}'
+    WHERE IDe=${id};
+  `, (error, result) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(result);
+  })
+})
+

@@ -43,4 +43,24 @@ app.get(`${URL}/delete/:id`, (req, res) => {
 
     res.send(result);
   })
+});
+
+app.get(`${URL}/update/:id/:name/:country`, (req, res) => {
+  const {
+    id,
+    name,
+    country,
+  } = req.params;
+
+  connection.query(`
+    UPDATE manufacturer
+    SET mName='${name}', mCountry='${country}'
+    WHERE IDm=${id};
+  `, (error, result) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(result);
+  })
 })

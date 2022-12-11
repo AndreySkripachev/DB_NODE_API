@@ -46,3 +46,22 @@ app.get(`${URL}/delete/:id`, (req, res) => {
     res.send(result);
   })
 })
+
+app.get(`${URL}/update/:id/:name`, (req, res) => {
+  const {
+    id,
+    name,
+  } = req.params;
+
+  connection.query(`
+    UPDATE payment_type
+    SET ptName='${name}'
+    WHERE IDpt=${id};
+  `, (error, result) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(result);
+  })
+})

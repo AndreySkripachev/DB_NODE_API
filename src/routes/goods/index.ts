@@ -36,12 +36,34 @@ app.get(`${URL}/:name/:cost/:type/:manufacturer`, (req, res) => {
 
     res.send(results);
   })
-})
+});
 
 app.get(`${URL}/delete/:id`, (req, res) => {
   const { id } = req.params;
 
   connection.query(`DELETE FROM goods WHERE IDg=${id}`, (error, result) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(result);
+  })
+})
+
+app.get(`${URL}/update/:id/:name/:cost/:type/:manufacturer`, (req, res) => {
+  const {
+    cost,
+    id,
+    manufacturer,
+    name,
+    type,
+  } = req.params;
+
+  connection.query(`
+    UPDATE goods
+    SET gName='${name}', gCost=${cost}, IDgt=${type}, IDm=${manufacturer}
+    WHERE IDg=${id};
+  `, (error, result) => {
     if (error) {
       res.status(500).send(createMySQLErrorResponse(error));
     }

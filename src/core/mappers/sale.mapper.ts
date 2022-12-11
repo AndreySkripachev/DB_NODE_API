@@ -27,6 +27,7 @@ class SaleMapper implements MapperFromDB<readonly Sale[], SaleDto[]> {
             count: sale.siCount,
             productName: sale.gName,
             id: sale.IDsi,
+            sale: sale.IDs
           }]
         })
       } else {
@@ -34,6 +35,7 @@ class SaleMapper implements MapperFromDB<readonly Sale[], SaleDto[]> {
           count: sale.siCount,
           productName: sale.gName,
           id: sale.IDsi,
+          sale: sale.IDs
         })
       }
     }

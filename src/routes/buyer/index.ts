@@ -49,3 +49,25 @@ app.get(`${URL}/delete/:id`, (req, res) => {
     res.send(result);
   })
 })
+
+app.get(`${URL}/update/:id/:name/:address/:phone/:email`, (req, res) => {
+  const {
+    email,
+    id,
+    name,
+    phone,
+    address,
+  } = req.params;
+
+  connection.query(`
+    UPDATE buyer
+    SET bName='${name}', bAddress='${address}, bPhone='${phone}', bEmail='${email}'
+    WHERE IDb=${id};
+  `, (error, result) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(result);
+  })
+})

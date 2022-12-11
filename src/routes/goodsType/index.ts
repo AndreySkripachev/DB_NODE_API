@@ -44,3 +44,22 @@ app.get(`${URL}/delete/:id`, (req, res) => {
     res.send(result);
   })
 })
+
+app.get(`${URL}/update/:id/:name`, (req, res) => {
+  const {
+    id,
+    name,
+  } = req.params;
+
+  connection.query(`
+    UPDATE goods_type
+    SET gtName='${name}'
+    WHERE IDgt=${id};
+  `, (error, result) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(result);
+  })
+})

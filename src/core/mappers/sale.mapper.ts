@@ -21,6 +21,7 @@ class SaleMapper implements MapperFromDB<readonly Sale[], SaleDto[]> {
             firstName: sale.eFirstName,
             lastName: sale.eLastName,
             patronymic: sale.ePatronymic,
+            id: sale.IDe,
           },
           paymentType: sale.ptName,
           saleItems: [{

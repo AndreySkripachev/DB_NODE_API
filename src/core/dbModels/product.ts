@@ -5,4 +5,6 @@ export interface Product {
   readonly gtName: string;
   readonly mName: string;
   readonly mCountry: string;
+  readonly IDgt: number;
+  readonly IDm: number;
 }

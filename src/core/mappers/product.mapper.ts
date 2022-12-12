@@ -8,11 +8,15 @@ class ProductMapper implements MapperFromDB<Product, ProductDto> {
       manufacturer: {
         country: data.mCountry,
         name: data.mName,
+        id: data.IDm,
       },
       cost: data.gCost,
       id: data.IDg,
       name: data.gName,
-      type: data.gtName,
+      type: {
+        name: data.gtName,
+        id: data.IDgt
+      },
     };
   }
 };

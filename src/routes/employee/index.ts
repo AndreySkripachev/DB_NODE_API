@@ -59,9 +59,11 @@ app.get(`${URL}/update/:id/:last/:first/:father/:position`, (req, res) => {
     position,
   } = req.params;
 
+  console.log()
+
   connection.query(`
     UPDATE employee
-    SET eLastName='${last}', eFirstName='${first}, ePatronymic='${father}', ePosition='${position}'
+    SET eLastName='${last}', eFirstName='${first}', ePatronymic='${father}', ePosition='${position}'
     WHERE IDe=${id};
   `, (error, result) => {
     if (error) {

@@ -12,4 +12,5 @@ export interface Sale {
   readonly bName: string;
   readonly bEMail: string;
   readonly IDs: number;
+  readonly IDe: number;
 }

@@ -18,7 +18,7 @@ app.get(URL, (_req, res) => {
   });
 });
 
-app.get(`${URL}/:name`, (req, res) => {
+app.get(`${URL}/post/:name`, (req, res) => {
   const { name } = req.params;
 
   connection.query(`
@@ -36,7 +36,7 @@ app.get(`${URL}/:name`, (req, res) => {
 app.get(`${URL}/delete/:id`, (req, res) => {
   const { id } = req.params;
 
-  connection.query(`DELETE FROM goods_type WHERE IDg=${id}`, (error, result) => {
+  connection.query(`DELETE FROM goods_type WHERE IDgt=${id}`, (error, result) => {
     if (error) {
       res.status(500).send(createMySQLErrorResponse(error));
     }

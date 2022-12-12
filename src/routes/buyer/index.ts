@@ -28,7 +28,7 @@ app.get(`${URL}/:name/:address/:phone/:email`, (req, res) => {
 
   connection.query(`
     INSERT INTO buyer (bName, bAddress, bPhone, bEmail)
-    VALUES ('${name}', '${address}', '${email}', '${phone}');
+    VALUES ('${name}', '${address}', '${phone}', '${email}');
   `, (error, results) => {
     if (error) {
       res.status(500).send(createMySQLErrorResponse(error));
@@ -61,7 +61,7 @@ app.get(`${URL}/update/:id/:name/:address/:phone/:email`, (req, res) => {
 
   connection.query(`
     UPDATE buyer
-    SET bName='${name}', bAddress='${address}, bPhone='${phone}', bEmail='${email}'
+    SET bName='${name}', bAddress='${address}', bPhone='${phone}', bEmail='${email}'
     WHERE IDb=${id};
   `, (error, result) => {
     if (error) {

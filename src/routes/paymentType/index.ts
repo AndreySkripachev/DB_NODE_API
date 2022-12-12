@@ -20,7 +20,7 @@ app.get(URL, (_req, res) => {
 });
 
 // Post req
-app.get(`${URL}/:name`, (req, res) => {
+app.get(`${URL}/post/:name`, (req, res) => {
   const { name } = req.params;
 
   connection.query(`
@@ -38,7 +38,7 @@ app.get(`${URL}/:name`, (req, res) => {
 app.get(`${URL}/delete/:id`, (req, res) => {
   const { id } = req.params;
 
-  connection.query(`DELETE FROM payment_type WHERE IDg=${id}`, (error, result) => {
+  connection.query(`DELETE FROM payment_type WHERE IDpt=${id}`, (error, result) => {
     if (error) {
       res.status(500).send(createMySQLErrorResponse(error));
     }

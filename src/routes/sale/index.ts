@@ -17,3 +17,18 @@ app.get(URL, (_req, res) => {
     );
   });
 });
+
+app.get(`${URL}/delete/:id`, (req, res) => {
+  const { id } = req.params;
+
+  connection.query(
+    `DELETE FROM sale_items WHERE IDs=${id};
+    DELETE FROM sales WHERE IDs=${id}`,
+  (error, response) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(response);
+  })
+});

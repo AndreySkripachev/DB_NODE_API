@@ -33,3 +33,21 @@ app.get(`${URL}/delete/:id`, (req, res) => {
     res.send(response);
   })
 });
+
+app.get(`${URL}/update/:id/:buyer/:employee/:payment/:date`, (req, res) => {
+  const { buyer, date, employee, id, payment } = req.params;
+
+  const dateToDB = date.split('.').reverse().join('-');
+
+  connection.query(`
+    UPDATE sales
+    SET sDate='${dateToDB}', IDb=${buyer}, IDe=${employee}, IDpt=${payment}
+    WHERE IDs=${id};
+  `, (error, response) => {
+    if (error) {
+      res.status(500).send(createMySQLErrorResponse(error));
+    }
+
+    res.send(response);
+  })
+})

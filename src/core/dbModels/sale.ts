@@ -13,4 +13,6 @@ export interface Sale {
   readonly bEMail: string;
   readonly IDs: number;
   readonly IDe: number;
+  readonly IDb: number;
+  readonly IDpt: number;
 }

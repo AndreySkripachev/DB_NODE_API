@@ -16,6 +16,7 @@ class SaleMapper implements MapperFromDB<readonly Sale[], SaleDto[]> {
           buyer: {
             email: sale.bEMail,
             name: sale.bName,
+            id: sale.IDb,
           },
           employee: {
             firstName: sale.eFirstName,
@@ -23,12 +24,16 @@ class SaleMapper implements MapperFromDB<readonly Sale[], SaleDto[]> {
             patronymic: sale.ePatronymic,
             id: sale.IDe,
           },
-          paymentType: sale.ptName,
+          paymentType: {
+            id: sale.IDpt,
+            name: sale.ptName,
+          },
           saleItems: [{
             count: sale.siCount,
             productName: sale.gName,
             id: sale.IDsi
-          }]
+          }],
+          saleDate: sale.sDate,
         })
       } else {
         currentSale.saleItems.push({

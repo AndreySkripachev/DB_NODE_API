@@ -86,7 +86,7 @@ app.get(`${URL}/add_item/:product/:count/:sale`, (req, res) => {
 
   connection.query(`
     INSERT INTO sale_items (IDg, siCount, IDs)
-    VALUES ('${product}', '${count}', '${sale}');
+    VALUES (${product}, ${count}, ${sale});
   `, (error, results) => {
     if (error) {
       console.log(JSON.stringify(error, null, 2))

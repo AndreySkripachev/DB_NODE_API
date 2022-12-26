@@ -13,7 +13,7 @@ app.get(URL, (_req, res) => {
     }
 
     res.send(
-      (results as Product[]).map(productMapper.fromDB)
+      (results as Product[]).map(productMapper.fromDB).filter(({ id }) => id !== 5)
     );
   });
 });

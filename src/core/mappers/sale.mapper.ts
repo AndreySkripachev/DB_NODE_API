@@ -8,8 +8,8 @@ class SaleMapper implements MapperFromDB<readonly Sale[], SaleDto[]> {
     const sales: SaleDto[] = [];
 
     for (const sale of data) {
-      const currentSale = sales.find(item => item.id === sale.IDs);
 
+      const currentSale = sales.find(item => item.id === sale.IDs);
       if (currentSale === undefined) {
         sales.push({
           id: sale.IDs,
@@ -28,18 +28,20 @@ class SaleMapper implements MapperFromDB<readonly Sale[], SaleDto[]> {
             id: sale.IDpt,
             name: sale.ptName,
           },
-          saleItems: [{
+          saleItems: sale.IDg !== 5 ? [{
             count: sale.siCount,
             productName: sale.gName,
-            id: sale.IDsi
-          }],
+            id: sale.IDsi,
+            cost: sale.gCost,
+          }] : [],
           saleDate: sale.sDate,
         })
-      } else {
+      } else if (sale.IDg !== 5) {
         currentSale.saleItems.push({
           count: sale.siCount,
           productName: sale.gName,
-          id: sale.IDsi
+          id: sale.IDsi,
+          cost: sale.gCost,
         })
       }
     }
